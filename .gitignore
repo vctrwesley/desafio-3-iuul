@@ -1,0 +1,21 @@
+# Arquivos temporários
+*.swp
+*~
+
+# Arquivos de compilação
+*.o
+*.out
+*.js
+*.js.map
+
+# Arquivos de logs e cache
+logs/
+cache/
+
+# Arquivos específicos de IDEs e editores
+.vscode/
+.idea/
+*.sublime-*
+
+# Dependências e bibliotecas
+node_modules/
