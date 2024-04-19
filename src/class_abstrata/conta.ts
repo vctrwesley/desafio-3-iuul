@@ -24,4 +24,24 @@ export abstract class Conta {
   get credito() {
     return this._creditos;
   }
+
+  associarCredito(credito: Credito): void {
+    this._creditos.push(credito);
+  }
+
+  associarDebito(debito: Debito): void {
+    this._debitos.push(debito);
+  }
+
+  depositar(value: number) {
+    let credito = new Credito(value, new Date());
+    this._creditos.push(credito);
+    return this._creditos;
+  }
+
+  sacar(value: any) {
+    var debito = new Debito(value, new Date());
+    this._debitos.push(debito);
+    return this._debitos;
+  }
 }

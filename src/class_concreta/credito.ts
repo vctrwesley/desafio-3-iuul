@@ -14,4 +14,8 @@ export class Credito {
     get data() {
         return this._data;
     }
+
+    set data(data: Date) {
+        this._data = data;
+    }
 }

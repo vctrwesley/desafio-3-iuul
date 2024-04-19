@@ -10,4 +10,18 @@ export class ContaCorrente extends Conta {
     this._limite = limite;
     this._limiteSaque += this._limite;
   }
+
+  get limite() {
+    return this._limite;
+  }
+
+  set limite(value: any) {
+    this._limite += value;
+  }
+
+  calcularSaldo(): number {
+    let totalCreditos = this.credito.reduce((total, credito) => total + credito.valor, 0);
+    let totalDebitos = this.debito.reduce((total, debito) => total + debito.valor, 0);
+    return totalCreditos - totalDebitos;
+  }
 }

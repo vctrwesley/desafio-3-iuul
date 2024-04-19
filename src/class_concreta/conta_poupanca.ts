@@ -7,4 +7,10 @@ export class ContaPoupanca extends Conta {
   constructor(nConta: number, cliente: Cliente) {
     super(nConta, cliente);
   }
+
+  calcularSaldo(): number {
+    let totalCreditos = this.credito.reduce((total, credito) => total + credito.valor, 0);
+    let totalDebitos = this.debito.reduce((total, debito) => total + debito.valor, 0);
+    return totalCreditos - totalDebitos;
+  }
 }
