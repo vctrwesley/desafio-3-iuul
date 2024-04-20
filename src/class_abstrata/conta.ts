@@ -25,6 +25,18 @@ export abstract class Conta {
     return this._creditos;
   }
 
+  calcularSaldo(): number {
+    let totalCreditos = this.credito.reduce(
+      (total, credito) => total + credito.valor,
+      0
+    );
+    let totalDebitos = this.debito.reduce(
+      (total, debito) => total + debito.valor,
+      0
+    );
+    return totalCreditos - totalDebitos;
+  }
+
   associarCredito(credito: Credito): void {
     this._creditos.push(credito);
   }
@@ -40,8 +52,12 @@ export abstract class Conta {
   }
 
   sacar(value: any) {
-    var debito = new Debito(value, new Date());
-    this._debitos.push(debito);
-    return this._debitos;
+    if (this.calcularSaldo() >= value) {
+      var debito = new Debito(value, new Date());
+      this._debitos.push(debito);
+      return this._debitos;
+    } else {
+      console.log("saldo insuficiente");
+    }
   }
 }
