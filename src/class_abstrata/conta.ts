@@ -8,8 +8,8 @@ export abstract class Conta {
   private _debitos: Debito[] = [];
   private _cliente: Cliente;
 
-  constructor(nConta: number, cliente: Cliente) {
-    this._numeroConta = nConta;
+  constructor(numeroConta: number, cliente: Cliente) {
+    this._numeroConta = numeroConta;
     this._cliente = cliente;
   }
 
