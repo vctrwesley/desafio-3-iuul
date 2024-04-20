@@ -53,4 +53,12 @@ export class Cliente extends Pessoa implements IUsurario {
       return false;
     }
   }
+
+  get contas() {
+    return this._contas;
+  }
+
+  adicionarContas(conta: Conta) {
+    this._contas.push(conta);
+  }
 }
