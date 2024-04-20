@@ -8,8 +8,8 @@ export abstract class Conta {
   private _debitos: Debito[] = [];
   private _cliente: Cliente;
 
-  constructor(nConta: number, cliente: Cliente) {
-    this._numeroConta = nConta;
+  constructor(numeroConta: number, cliente: Cliente) {
+    this._numeroConta = numeroConta;
     this._cliente = cliente;
   }
 
@@ -23,6 +23,18 @@ export abstract class Conta {
 
   get credito() {
     return this._creditos;
+  }
+
+  calcularSaldo(): number {
+    let totalCreditos = this.credito.reduce(
+      (total, credito) => total + credito.valor,
+      0
+    );
+    let totalDebitos = this.debito.reduce(
+      (total, debito) => total + debito.valor,
+      0
+    );
+    return totalCreditos - totalDebitos;
   }
 
   associarCredito(credito: Credito): void {
@@ -40,8 +52,12 @@ export abstract class Conta {
   }
 
   sacar(value: any) {
-    var debito = new Debito(value, new Date());
-    this._debitos.push(debito);
-    return this._debitos;
+    if (this.calcularSaldo() >= value) {
+      var debito = new Debito(value, new Date());
+      this._debitos.push(debito);
+      return this._debitos;
+    } else {
+      console.log("saldo insuficiente");
+    }
   }
 }

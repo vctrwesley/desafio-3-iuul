@@ -10,16 +10,12 @@ export class Cliente extends Pessoa implements IUsurario {
 
   constructor(
     vip: Boolean,
-    enderecos: Endereco,
-    contas: Conta,
     nome: String,
     cpf: String,
     telefone: String
   ) {
     super(nome, cpf, telefone);
     this._vip = vip;
-    this._enderecos.push(enderecos);
-    this._contas.push(contas);
   }
 
   get vip(): Boolean {
@@ -38,14 +34,14 @@ export class Cliente extends Pessoa implements IUsurario {
     this._enderecos = value;
   }
 
-  adicionarEnderecos(endereco: Endereco) {
-    this._enderecos.push(endereco);
-  }
-
   listarEderecos() {
     return this._enderecos;
   }
 
+  adicionarEnderecos(endereco: Endereco) {
+    this._enderecos.push(endereco);
+  }
+  
   autenticar() {
     if (this) {
       return true;
